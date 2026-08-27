@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desenvolvimento de Sistemas - 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.85);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --accent-gold: #d4af37;
+            --accent-blue: #38bdf8;
+            --border-tech: rgba(148, 163, 184, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Roboto', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+            padding: 40px 0;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            width: 200%; height: 200%;
+            background-image: 
+                linear-gradient(var(--border-tech) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border-tech) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            z-index: 2;
+        }
+
+        h1 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+        }
+
+        .subtitle {
+            font-family: 'Rajdhani', sans-serif;
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+        }
+
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1100px;
+            width: 90%;
+            z-index: 2;
+        }
+
+        .lesson-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-tech);
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15);
+        }
+
+        .icon-box {
+            font-size: 2.5rem;
+            margin-bottom: 1.2rem;
+            color: var(--accent-gold);
+            height: 70px; width: 70px;
+            border-radius: 50%;
+            border: 1px dashed var(--border-tech);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lesson-card:hover .icon-box {
+            color: var(--accent-blue);
+            border-color: var(--accent-blue);
+        }
+
+        h2 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 900px) {
+            .lessons-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Desenvolvimento de Sistemas</h1>
+        <div class="subtitle">Módulo de Banco de Dados • Repositório DS 2026</div>
+    </header>
+
+    <div class="lessons-grid">
+        <a href="aulas/aula1.html" class="lesson-card">
+            <div class="icon-box"><i class="fa-solid fa-database"></i></div>
+            <h2>Aula 01</h2>
+            <p>Introdução a Bancos de Dados Relacionais e Regras de Negócio.</p>
+        </a>
+
+        <a href="aulas/aula2.html" class="lesson-card">
+            <div class="icon-box"><i class="fa-solid fa-project-diagram"></i></div>
+            <h2>Aula 02</h2>
+            <p>Modelagem Conceitual e Diagrama Entidade-Relacionamento (DER).</p>
+        </a>
+
+        <a href="aulas/aula3.html" class="lesson-card">
+            <div class="icon-box"><i class="fa-solid fa-key"></i></div>
+            <h2>Aula 03</h2>
+            <p>Modelagem Lógica, Chaves Primárias e Estrangeiras (PK e FK).</p>
+        </a>
+
+        <a href="aulas/aula4.html" class="lesson-card">
+            <div class="icon-box"><i class="fa-solid fa-list-check"></i></div>
+            <h2>Aula 04</h2>
+            <p>Normalização de Dados (1ª, 2ª e 3ª Formas Normais).</p>
+        </a>
+
+        <a href="aulas/aula5.html" class="lesson-card" style="grid-column: span 2;">
+            <div class="icon-box"><i class="fa-solid fa-server"></i></div>
+            <h2>Aula 05</h2>
+            <p>Mão na Massa no XAMPP: Criando o Banco, Tabelas e Comandos SQL Práticos.</p>
+        </a>
+    </div>
+
+</body>
+</html>
