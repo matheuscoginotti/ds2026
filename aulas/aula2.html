@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 02 - Modelagem Conceitual e DER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #0f172a; 
+            --card-bg: rgba(30, 41, 59, 0.85);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --accent-gold: #d4af37;
+            --accent-blue: #38bdf8;
+            --accent-green: #10b981;
+            --border-tech: rgba(148, 163, 184, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Roboto', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            border-bottom: 1px solid var(--accent-blue);
+            padding: 1.5rem 20px;
+            position: sticky; top: 0; z-index: 10;
+            display: flex; align-items: center; justify-content: space-between;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-back {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600; font-size: 1.1rem;
+            text-transform: uppercase;
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        .lesson-container {
+            width: 100%; max-width: 850px; padding: 3rem 20px;
+        }
+
+        .lesson-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 2.8rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .lesson-meta {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border-tech);
+            padding-bottom: 1rem;
+        }
+
+        .content { font-size: 1.1rem; line-height: 1.8; color: #cbd5e1; }
+        .content h2 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 2rem;
+            color: var(--accent-blue);
+            margin-top: 3rem; margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-tech);
+            padding-bottom: 8px;
+        }
+
+        .content h3 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.35rem;
+            color: var(--text-primary);
+            margin-top: 2rem; margin-bottom: 0.8rem;
+        }
+
+        .content p { margin-bottom: 1.5rem; }
+        .content ul { margin-bottom: 1.5rem; padding-left: 2rem; }
+        .content li { margin-bottom: 0.8rem; }
+
+        .code-container {
+            background-color: rgba(15, 23, 42, 0.9);
+            border: 1px solid var(--border-tech);
+            border-left: 4px solid var(--accent-green);
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.95rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            color: #d4d4d4;
+        }
+
+        .exercise-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--accent-gold);
+            padding: 1.5rem; border-radius: 0 8px 8px 0;
+            margin: 2rem 0;
+        }
+        .exercise-box strong {
+            display: block; font-family: 'Rajdhani', sans-serif;
+            font-size: 1.2rem; color: var(--text-primary);
+            text-transform: uppercase; margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="../index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Voltar ao Menu</a>
+        <h1>2º DS • Banco de Dados</h1>
+        <div style="width: 80px;"></div>
+    </header>
+
+    <main class="lesson-container">
+        <h1 class="lesson-title">Aula 02: Modelagem Conceitual e DER</h1>
+        <div class="lesson-meta"><i class="far fa-calendar-alt"></i> Repositório DS 2026 • Professor: Matheus M. Coginotti</div>
+
+        <div class="content">
+            <p>Antes de abrir o XAMPP ou digitar qualquer linha de código SQL, um desenvolvedor de sistemas precisa desenhar a estrutura lógica do problema. A fase de <strong>Modelagem Conceitual</strong> serve exatamente para isso: mapear o mundo real para o papel utilizando o <strong>Diagrama Entidade-Relacionamento (DER)</strong>.</p>
+
+            <h2><i class="fas fa-project-diagram"></i> 1. O que compõe um DER?</h2>
+            <p>O Diagrama Entidade-Relacionamento é composto por três elementos fundamentais:</p>
+            <ul>
+                <li><strong>Entidades:</strong> Representam os "objetos" ou "conceitos" do mundo real sobre os quais queremos guardar informações (ex: <code>Cliente</code>, <code>Produto</code>, <code>Pedido</code>). No modelo conceitual, são representadas por retângulos.</li>
+                <li><strong>Atributos:</strong> São as características ou propriedades que descrevem uma entidade (ex: O cliente tem <code>nome</code>, <code>cpf</code>, <code>telefone</code>). São representados por elogas/círculos conectados à entidade.</li>
+                <li><strong>Relacionamentos:</strong> Representam a associação lógica existente entre duas ou mais entidades (ex: Um <em>Cliente</em> realiza um <em>Pedido</em>). São representados por losangos.</li>
+            </ul>
+
+            <h2><i class="fas fa-exchange-alt"></i> 2. Entendendo a Cardinalidade</h2>
+            <p>A cardinalidade define <strong>quantas vezes</strong> uma entidade pode se relacionar com outra. É o conceito mais importante na hora de desenhar conexões corretas no banco de dados:</p>
+
+            <h3>1 para 1 (1:1)</h3>
+            <p>Ocorre quando um registro de uma tabela está associado a <strong>exatamente um</strong> registro de outra tabela. 
+            <br><em>Exemplo:</em> Um <code>Funcionário</code> possui um único <code>Crachá</code> de acesso, e um crachá pertence a um único funcionário.</p>
+
+            <h3>1 para N (1:N)</h3>
+            <p>Ocorre quando um registro de uma tabela pode se relacionar com vários registros de outra, mas o inverso é verdadeiro apenas para um. É o relacionamento mais comum nos sistemas!
+            <br><em>Exemplo:</em> Uma <code>Categoria</code> pode conter vários <code>Produtos</code>, mas um produto específico pertence a uma única categoria.</p>
+
+            <h3>N para N (N:N)</h3>
+            <p>Ocorre quando vários registros de uma tabela se relacionam com vários registros de outra tabela simultaneamente.
+            <br><em>Exemplo:</em> Um <code>Aluno</code> pode se matricular em várias <code>Disciplinas</code>, e uma disciplina possui vários alunos matriculados.</p>
+
+            <div class="code-container">
+<span style="color: #6a9955;"># REGRA DE OURO DA RELAÇÃO N para N (N:N)</span><br>
+O banco de dados relacional <span style="color: #ff5555;">não consegue</span> ligar tabelas N para N diretamente.<br>
+Sempre que identificarmos um relacionamento N para N no DER conceitual, obrigatoriamente 
+precisaremos criar uma <strong>tabela associativa (intermediária)</strong> na próxima etapa de projeto!
+            </div>
+
+            <div class="exercise-box">
+                <strong><i class="fas fa-tasks"></i> Exercício Prático de Fixação</strong>
+                <p>Imagine que você foi contratado para criar o sistema de uma <strong>Locadora de Filmes</strong>:</p>
+                <ol style="margin-left: 20px; line-height: 1.8;">
+                    <li>Identifique no papel pelo menos <strong>3 Entidades</strong> principais para este cenário.</li>
+                    <li>Escolha uma das entidades e liste <strong>3 atributos</strong> fundamentais para ela.</li>
+                    <li>Defina qual é a cardinalidade (1:1, 1:N ou N:N) entre a entidade <strong>Cliente</strong> e a entidade <strong>Filme</strong> ao realizar uma locação. Justifique sua resposta.</li>
+                </ol>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
