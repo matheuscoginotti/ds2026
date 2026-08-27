@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 05 - Mão na Massa no XAMPP e Comandos SQL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #0f172a; 
+            --card-bg: rgba(30, 41, 59, 0.85);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --accent-gold: #d4af37;
+            --accent-blue: #38bdf8;
+            --accent-green: #10b981;
+            --border-tech: rgba(148, 163, 184, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Roboto', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            border-bottom: 1px solid var(--accent-blue);
+            padding: 1.5rem 20px;
+            position: sticky; top: 0; z-index: 10;
+            display: flex; align-items: center; justify-content: space-between;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-back {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600; font-size: 1.1rem;
+            text-transform: uppercase;
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        .lesson-container {
+            width: 100%; max-width: 850px; padding: 3rem 20px;
+        }
+
+        .lesson-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 2.8rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .lesson-meta {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border-tech);
+            padding-bottom: 1rem;
+        }
+
+        .content { font-size: 1.1rem; line-height: 1.8; color: #cbd5e1; }
+        .content h2 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 2rem;
+            color: var(--accent-blue);
+            margin-top: 3rem; margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-tech);
+            padding-bottom: 8px;
+        }
+
+        .content h3 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.35rem;
+            color: var(--text-primary);
+            margin-top: 2rem; margin-bottom: 0.8rem;
+        }
+
+        .content p { margin-bottom: 1.5rem; }
+        .content ul { margin-bottom: 1.5rem; padding-left: 2rem; }
+        .content li { margin-bottom: 0.8rem; }
+
+        .code-container {
+            background-color: rgba(15, 23, 42, 0.9);
+            border: 1px solid var(--border-tech);
+            border-left: 4px solid var(--accent-green);
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.95rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            color: #d4d4d4;
+        }
+        .sql-keyword { color: #569cd6; font-weight: bold; }
+        .sql-string { color: #ce9178; }
+        .sql-comment { color: #6a9955; font-style: italic; }
+
+        .exercise-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--accent-gold);
+            padding: 1.5rem; border-radius: 0 8px 8px 0;
+            margin: 2rem 0;
+        }
+        .exercise-box strong {
+            display: block; font-family: 'Rajdhani', sans-serif;
+            font-size: 1.2rem; color: var(--text-primary);
+            text-transform: uppercase; margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="../index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Voltar ao Menu</a>
+        <h1>2º DS • Banco de Dados</h1>
+        <div style="width: 80px;"></div>
+    </header>
+
+    <main class="lesson-container">
+        <h1 class="lesson-title">Aula 05: XAMPP, phpMyAdmin e Comandos SQL</h1>
+        <div class="lesson-meta"><i class="far fa-calendar-alt"></i> Repositório DS 2026 • Professor: Matheus M. Coginotti</div>
+
+        <div class="content">
+            <p>Chegou a hora de colocar a mão na massa! Nesta aula prática, vamos iniciar o painel de controle do <strong>XAMPP</strong>, subir o serviço do <strong>MySQL</strong>, acessar o ambiente web do <strong>phpMyAdmin</strong> e executar os comandos estruturais e de manipulação essenciais.</p>
+
+            <h2><i class="fas fa-code"></i> Script SQL Prático: Criando a Loja Simples</h2>
+            <p>Abra o seu navegador, acesse o painel do phpMyAdmin, clique na aba <strong>SQL</strong>, cole os comandos abaixo e clique em Executar:</p>
+
+            <div class="code-container">
+<span class="sql-comment">-- 1. Criar o Banco de Dados</span><br>
+<span class="sql-keyword">CREATE DATABASE</span> loja_simples;<br><br>
+<span class="sql-comment">-- 2. Selecionar o Banco para uso</span><br>
+<span class="sql-keyword">USE</span> loja_simples;<br><br>
+<span class="sql-comment">-- 3. Criar a tabela de Categorias (Tabela Pai)</span><br>
+<span class="sql-keyword">CREATE TABLE</span> categorias (<br>
+&nbsp;&nbsp;&nbsp;&nbsp;id <span class="sql-keyword">INT AUTO_INCREMENT PRIMARY KEY</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;nome <span class="sql-keyword">VARCHAR(50) NOT NULL</span><br>);<br><br>
+<span class="sql-comment">-- 4. Criar a tabela de Produtos (Tabela Filha com FK)</span><br>
+<span class="sql-keyword">CREATE TABLE</span> produtos (<br>
+&nbsp;&nbsp;&nbsp;&nbsp;id <span class="sql-keyword">INT AUTO_INCREMENT PRIMARY KEY</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;nome <span class="sql-keyword">VARCHAR(100) NOT NULL</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;preco <span class="sql-keyword">DECIMAL(10,2) NOT NULL</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;quantidade <span class="sql-keyword">INT NOT NULL</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;categoria_id <span class="sql-keyword">INT</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-keyword">FOREIGN KEY</span> (categoria_id) <span class="sql-keyword">REFERENCES</span> categorias(id)<br>);<br><br>
+<span class="sql-comment">-- 5. Inserir dados iniciais</span><br>
+<span class="sql-keyword">INSERT INTO</span> categorias (nome) <span class="sql-keyword">VALUES</span> (<span class="sql-string">'Eletrônicos'</span>), (<span class="sql-keyword">VALUES</span> <span class="sql-string">'Periféricos'</span>);<br>
+<span class="sql-keyword">INSERT INTO</span> produtos (nome, preco, quantidade, categoria_id) <span class="sql-keyword">VALUES</span> (<span class="sql-string">'Smartphone XYZ'</span>, 1500.00, 10, 1);
+            </div>
+
+            <h2><i class="fas fa-tasks"></i> Lista de Exercícios Práticos para Laboratório</h2>
+            <p>Com o banco criado e rodando no XAMPP, desafie os alunos a resolverem os seguintes exercícios no phpMyAdmin:</p>
+
+            <div class="exercise-box">
+                <strong>Desafio 01: Inserção Avançada</strong>
+                <p>Cadastre 3 novas categorias no banco (ex: <em>Vestuário, Alimentos e Casa</em>). Em seguida, insira 5 produtos diferentes distribuídos entre essas categorias utilizando corretamente a coluna de chave estrangeira (<code>categoria_id</code>).</p>
+            </div>
+
+            <div class="exercise-box">
+                <strong>Desafio 02: Consulta com Filtro (WHERE)</strong>
+                <p>Escreva um comando <code>SELECT</code> que retorne apenas os produtos cujo preço seja <strong>maior do que R$ 100,00</strong>.</p>
+            </div>
+
+            <div class="exercise-box">
+                <strong>Desafio 03: Atualização de Registros (UPDATE)</strong>
+                <p>Houve reajuste nos preços dos produtos. Escreva um comando <code>UPDATE</code> para alterar o preço de todos os produtos da categoria de ID <code>2</code> aplicando um novo valor de sua escolha.</p>
+            </div>
+
+            <div class="exercise-box">
+                <strong>Desafio 04: Remoção Segura (DELETE)</strong>
+                <p>Um produto saiu de linha na loja. Escreva um comando <code>DELETE</code> para remover do banco o registro que possui o ID igual a <code>2</code>.</p>
+            </div>
+
+            <div class="exercise-box">
+                <strong>Desafio 05: Consulta de Estoque Crítico</strong>
+                <p>O gerente precisa repor o estoque urgentemente. Escreva uma consulta SQL que traga o nome e a quantidade de todos os produtos que estão com <strong>menos de 15 unidades</strong> disponíveis em estoque.</p>
+            </div>
+
+        </div>
+    </main>
+</body>
+</html>
