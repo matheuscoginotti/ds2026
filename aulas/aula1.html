@@ -1,0 +1,132 @@
+<style>
+    :root {
+        --bg-color: #0f172a; 
+        --card-bg: rgba(30, 41, 59, 0.85);
+        --text-primary: #f1f5f9;
+        --text-secondary: #94a3b8;
+        --accent-gold: #d4af37;
+        --accent-blue: #38bdf8;
+        --accent-green: #10b981;
+        --border-tech: rgba(148, 163, 184, 0.2);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-primary);
+        font-family: 'Roboto', sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header {
+        width: 100%;
+        background: rgba(15, 23, 42, 0.95);
+        border-bottom: 1px solid var(--accent-blue);
+        padding: 1.5rem 20px;
+        position: sticky; top: 0; z-index: 10;
+        display: flex; align-items: center; justify-content: space-between;
+        backdrop-filter: blur(10px);
+    }
+
+    .btn-back {
+        color: var(--accent-blue);
+        text-decoration: none;
+        font-family: 'Rajdhani', sans-serif;
+        font-weight: 600; font-size: 1.1rem;
+        text-transform: uppercase;
+        display: flex; align-items: center; gap: 8px;
+    }
+
+    .lesson-container {
+        width: 100%; max-width: 850px; padding: 3rem 20px;
+    }
+
+    .lesson-title {
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 2.8rem;
+        color: var(--accent-gold);
+        margin-bottom: 1rem;
+    }
+
+    .lesson-meta {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        margin-bottom: 3rem;
+        border-bottom: 1px solid var(--border-tech);
+        padding-bottom: 1rem;
+    }
+
+    .content { font-size: 1.1rem; line-height: 1.8; color: #cbd5e1; }
+    .content h2 {
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 2rem;
+        color: var(--accent-blue);
+        margin-top: 3rem; margin-bottom: 1rem;
+        border-bottom: 1px solid var(--border-tech);
+        padding-bottom: 8px;
+    }
+
+    .content p { margin-bottom: 1.5rem; }
+    .content ul { margin-bottom: 1.5rem; padding-left: 2rem; }
+    .content li { margin-bottom: 0.8rem; }
+
+    .code-container {
+        background-color: rgba(15, 23, 42, 0.9);
+        border: 1px solid var(--border-tech);
+        border-left: 4px solid var(--accent-green);
+        padding: 1.5rem;
+        border-radius: 8px;
+        font-family: 'Consolas', monospace;
+        font-size: 0.95rem;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+        color: #d4d4d4;
+    }
+
+    .exercise-box {
+        background: rgba(212, 175, 55, 0.1);
+        border-left: 4px solid var(--accent-gold);
+        padding: 1.5rem; border-radius: 0 8px 8px 0;
+        margin: 2rem 0;
+    }
+    .exercise-box strong {
+        display: block; font-family: 'Rajdhani', sans-serif;
+        font-size: 1.2rem; color: var(--text-primary);
+        text-transform: uppercase; margin-bottom: 0.5rem;
+    }
+</style>
+<header>
+    <a href="../index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Voltar ao Menu</a>
+    <h1>2º DS • Banco de Dados</h1>
+    <div style="width: 80px;"></div>
+</header>
+
+<main class="lesson-container">
+    <h1 class="lesson-title">Aula 01: Introdução a Bancos de Dados e Regras de Negócio</h1>
+    <div class="lesson-meta"><i class="far fa-calendar-alt"></i> Repositório DS 2026 • Professor: Matheus M. Coginotti</div>
+
+    <div class="content">
+        <p>Seja bem-vindo ao módulo de <strong>Banco de Dados do 2º DS</strong>! Antes de criarmos tabelas ou escrevermos comandos SQL complexos, precisamos entender o motivo fundamental pelo qual os sistemas modernos dependem de um SGBD e como tratamos a informação de forma estruturada.</p>
+
+        <h2><i class="fas fa-database"></i> 1. O que é um SGBD e por que usá-lo?</h2>
+        <p>Imagine guardar o cadastro de clientes, produtos e vendas de uma grande empresa dentro de planilhas de Excel soltas ou arquivos de texto. Conforme o volume de dados cresce, surgem problemas graves: duplicidade de informações, falhas de segurança, lentidão e risco de corrupção de dados.</p>
+        
+        <p>Um <strong>SGBD (Sistema de Gerenciamento de Banco de Dados)</strong> — como o MySQL que rodaremos através do XAMPP — é o software especializado que atua como intermediário entre a aplicação (seu sistema) e o armazenamento físico dos dados, garantindo:</p>
+        <ul>
+            <li><strong>Integridade:</strong> Garantir que os dados inseridos sigam regras lógicas válidas.</li>
+            <li><strong>Concorrência:</strong> Permitir que milhares de usuários acessem e modifiquem dados ao mesmo tempo sem travar a base.</li>
+            <li><strong>Segurança:</strong> Controle de permissões e perfis de acesso aos dados sigilosos.</li>
+        </ul>
+
+        <h2><i class="fas fa-table"></i> 2. O Modelo Relacional: Tabelas, Linhas e Colunas</h2>
+        <p>O modelo relacional organiza as informações em estruturas bidimensionais chamadas de <strong>tabelas</strong> (ou entidades). Na prática da programação:</p>
+        <ul>
+            <li><strong>Colunas (Atributos):</strong> Representam as características do que estamos guardando (ex: <code>nome</code>, <code>idade</code>, <code>preco</code>). Cada coluna possui um tipo de dado obrigatório (como <code>INT</code> para números inteiros ou <code>VARCHAR</code> para textos).</li>
+            <li><strong>Linhas (Registros ou Tuplas):</strong> Representam uma ocorrência única e completa (ex: o cadastro de um produto específico com todas as suas características preenchidas).</li>
+        </ul>
+
+        <div class="code-container">
